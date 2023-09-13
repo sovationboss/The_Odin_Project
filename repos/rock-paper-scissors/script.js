@@ -1,7 +1,7 @@
 let playerScore = 0;
 let computerScore = 0;
 
-function getComputerChoice(){
+const getComputerChoice = () => {
     let computerChoices = ["rock", "paper", "scissors"];
     return randomChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)]
 }
