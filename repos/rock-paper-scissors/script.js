@@ -1,36 +1,46 @@
-const computerSelection = getComputerChoice();
-const playerSelection = prompt("Choose your weapon:").toLowerCase(); 
-let playerCount = 0;
-let computerCount = 0;
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(){
     let computerChoices = ["rock", "paper", "scissors"];
     return randomChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)]
 }
 
-function oneGame (playerSelection, computerSelection){
-
+function checkWinner(playerSelection, computerSelection){
     if (
         playerSelection === "rock" && computerSelection === "scissors" ||
         playerSelection === "paper" && computerSelection === "rock" ||
         playerSelection === "scissors" && computerSelection === "paper"){
-            let result = "You win! " + playerSelection + " beats " + computerSelection + ".";
-            playerCount =+1;   
-            return result;
+            return "player";
         } else if (
         playerSelection === "paper" && computerSelection === "scissors" ||
         playerSelection === "rock" && computerSelection === "paper" ||
         playerSelection === "scissors" && computerSelection === "rock"){
-            let result = "You lose! " + computerSelection + " beats " + playerSelection + ".";
-            computerCount =+1;
-            return result;
+            return "computer";
         } else {
-            let result = "Tie!";
-            return result;
+            return "tie"; 
         }
-    }
+}
 
-console.log("Player selected:", playerSelection);
-console.log("Computer selected:", computerSelection);
-console.log(oneGame(playerSelection, computerSelection));
-console.log(playerCount, computerCount);
+function playRound(playerSelection, computerSelection){
+    const result = checkWinner(playerSelection, computerSelection);
+    if (result === "player"){
+        playerScore++;
+        return "You win! " + playerSelection + " beats " + computerSelection + ".";
+    } else if (result === "computer"){
+        computerScore++;
+        return "You lose! " + computerSelection + " beats " + playerSelection + ".";
+    }else if (result === "tie")
+        return "Tie!"
+}
+
+function game(){
+    for(let i = 0; i <= 4; i++){
+        const computerSelection = getComputerChoice();
+        const playerSelection = prompt("Choose your weapon:").toLowerCase(); 
+        console.log(playRound(playerSelection, computerSelection));
+        console.log(playerScore + " : " + computerScore);
+    }
+}
+
+game();
