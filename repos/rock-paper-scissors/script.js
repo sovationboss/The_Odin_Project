@@ -1,9 +1,31 @@
 let playerScore = 0;
 let computerScore = 0;
+const choices = ["rock", "paper", "scissors"];
 
 const getComputerChoice = () => {
-    let computerChoices = ["rock", "paper", "scissors"];
-    return randomChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)]
+    return randomChoice = choices[Math.floor(Math.random() * choices.length)]
+}
+
+function getPlayerInput(){
+    let input = prompt("Choose Rock, Paper or Scissors:");
+    while(input === null || input === ""){
+        input = prompt("Must choose between Rock, Paper and Scissors:");
+    }
+    input = input.toLowerCase();
+    let check = validateInput(input);
+    while(check == false){
+        input = prompt("Must choose between Rock, Paper and Scissors:");
+        while(input === null || input === ""){
+            input = prompt("Choose Rock, Paper or Scissors:");
+        }
+        input = input.toLowerCase();
+        check = validateInput(input);
+    }
+    return input;
+}
+
+const validateInput = (choice) => {
+    return choices.includes(choice);
 }
 
 function checkWinner(playerSelection, computerSelection){
@@ -37,7 +59,10 @@ function playRound(playerSelection, computerSelection){
 function game(){
     for(let i = 0; i <= 4; i++){
         const computerSelection = getComputerChoice();
-        const playerSelection = prompt("Choose your weapon:").toLowerCase(); 
+        const playerSelection = getPlayerInput();
+        //prompt("Choose your weapon:").toLowerCase();
+        console.log("player:", playerSelection); 
+        console.log("computer:", computerSelection);
         console.log(playRound(playerSelection, computerSelection));
         console.log(playerScore + " : " + computerScore);
     }
