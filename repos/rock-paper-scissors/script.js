@@ -16,7 +16,7 @@ function getPlayerInput(){
     while(check == false){
         input = prompt("Must choose between Rock, Paper and Scissors:");
         while(input === null || input === ""){
-            input = prompt("Choose Rock, Paper or Scissors:");
+            input = prompt("Must choose between Rock, Paper and Scissors:");
         }
         input = input.toLowerCase();
         check = validateInput(input);
