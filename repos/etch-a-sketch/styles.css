@@ -5,13 +5,6 @@ body, html {
     padding: 0;
 }
 
-/*#container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 800px;
-    height: 800px;
-}*/
-
 #drawing-area {
     display: flex;
     flex-wrap: wrap;
@@ -26,12 +19,18 @@ body, html {
 }
 
 .hovered {
-    background-color: lightgrey;
+    background-color: black;
+    opacity: 0.1;
+}
+
+#header {
+    width: 800px;
+    height: 50px;
+    margin: 10px 0 10px 0;
 }
 
 #controls {
     width: 800px;
     height: 100px;
-    border: 1px solid black;
 }
 
