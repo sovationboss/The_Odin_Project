@@ -4,23 +4,25 @@ const resetButton = document.getElementById('reset-button');
 const eraserButton = document.getElementById('eraser-button');
 let eraserMode = false;
 
-// Create 16x16 square divs
+// Create square divs (size = userInput)
 const createSquareDivs = (size) => {
 
-    // Clearing (existing) grid
+    // Clear (existing) grid
     container.innerHTML = ' ';
 
-    // Calculate flex-basis value for each square
+    // Calculate flex-basis value for each square based on user input
     const flexBasis = 100 / size + '%';
 
     // Iterate over rows
     for (let i = 0; i < size; i++) {
         // Iterate over columns in each row
         for (let j = 0; j < size; j++) {
+            container.style.background = 'white'
             const square = document.createElement('div');
             square.classList.add('square');
             container.appendChild(square);
             square.style.flexBasis = flexBasis;
+
             // Event listener for mouseenter event
             square.addEventListener('mouseenter', () => {
                 //square.classList.add('hovered');
@@ -38,13 +40,15 @@ const createSquareDivs = (size) => {
 // Call the function to create square divs
 createSquareDivs();
 
-// Function to handle applying hover effect
+// Function to handle hover effect
 const handleHover = (square) => {
-    // Check if square is already hovered
+
+    // Check if eraserMode is on
     if (eraserMode) {
         square.style.opacity = '';
         square.classList.remove('hovered'); 
     } else {
+        // Check if squares already have hover effect
         if (!square.classList.contains('hovered')) {
             square.classList.add('hovered');
         } else {
@@ -55,7 +59,7 @@ const handleHover = (square) => {
     }
 };
 
-// Function to reset the hover effect
+// Function to reset the hover effect/opacity
 const resetOpacity = () => {
     const squares = document.querySelectorAll('.square');
     squares.forEach(square => {
